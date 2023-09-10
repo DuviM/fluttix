@@ -68,7 +68,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   MaterialPageRoute(builder: (context) => ListMoviePage()),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2,
               ),
               ExpansionTile(
@@ -82,16 +82,17 @@ class _MyDrawerState extends State<MyDrawer> {
                       : Icons.arrow_drop_down,
                 ),
                 children: [
-                  Text('tooto'),
                   FutureBuilder(
                     future: fetchCategories(),
                     builder: (context, snapshot) {
-                      
                       if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
                       categories = snapshot.data as List<dynamic>;
                       return Column(
                         children: [
                         ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
                           itemCount: categories.length,
                           itemBuilder: (context, index) {
                           dynamic category = categories[index];
