@@ -36,9 +36,7 @@ class _ListActorPAgeState extends State<ListActorPAge> {
         future: fetchActors(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
-
           actors = snapshot.data as List<dynamic>;
-
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -47,7 +45,6 @@ class _ListActorPAgeState extends State<ListActorPAge> {
             itemCount: actors.length,
             itemBuilder: (context, index) {
               dynamic actor = actors[index];
-
               return Card(
                 elevation: 0,
                 color: Colors.transparent,

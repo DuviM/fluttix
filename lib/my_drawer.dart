@@ -63,9 +63,8 @@ class _MyDrawerState extends State<MyDrawer> {
                   'Movies',
                   style: optionStyle,
                 ),
-                // selected: _selectedIndex == 0,
                 onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ListMoviePage()),
+                  MaterialPageRoute(builder: (context) => const ListMoviePage()),
                 ),
               ),
               const Divider(

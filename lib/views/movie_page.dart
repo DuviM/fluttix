@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttix/my_drawer.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -49,17 +50,22 @@ class MoviePage extends StatelessWidget {
                           ),
                           Expanded(
                             child: Container(
+                              height: 200,
                               margin: EdgeInsets.only(left: 15),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    movie['title'],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19
-                                    ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        movie['title'],
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 19
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Row(
                                     children: [
@@ -78,12 +84,16 @@ class MoviePage extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  Text(
-                                    '"${movie['tagline']}"',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontStyle: FontStyle.italic
-                                    ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '"${movie['tagline']}"',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontStyle: FontStyle.italic
+                                        ),
+                                      ),
+                                    ],
                                   ),                            
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,36 +114,40 @@ class MoviePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red,
-                                    ),
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Container(
-                                            height: 200,
-                                            color: Colors.black,
-                                            child: Center(
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Text(movie['youtube'])
-                                                ],
-                                              ),
-                                            ),
+                                  Row(
+                                    children: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.red,
+                                        ),
+                                        onPressed: () {
+                                          showCupertinoModalPopup(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return Container(
+                                                height: 200,
+                                                color: Colors.black,
+                                                child: Center(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: [
+                                                      Text(movie['youtube'])
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            }
                                           );
-                                        }
-                                      );
-                                    },
-                                    child: Text(
-                                      'Watch trailer',
-                                      style: TextStyle(
-                                        color: Colors.white
+                                        },
+                                        child: Text(
+                                          'Watch trailer',
+                                          style: TextStyle(
+                                            color: Colors.white
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),                                  
                                 ],
                               ),
@@ -144,13 +158,17 @@ class MoviePage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            'Sypnosis :',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                'Sypnosis :',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
