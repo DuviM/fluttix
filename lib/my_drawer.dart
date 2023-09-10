@@ -103,7 +103,7 @@ class _MyDrawerState extends State<MyDrawer> {
                               ),
                               onTap: () {
                                 Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(builder: (context) => CategoryPage())
+                                  MaterialPageRoute(builder: (context) => CategoryPage(category)),
                                 );
                               }
                               );

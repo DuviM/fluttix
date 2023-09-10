@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:fluttix/my_drawer.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({super.key});
+  final Map category;
+  const CategoryPage(this.category, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GENRES'),
+        title: Text(
+          category['name']
+        ),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),
