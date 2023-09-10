@@ -98,7 +98,7 @@ class _ListMoviePageState extends State<ListMoviePage> {
                           Container(
                             margin: EdgeInsets.only(top: 5),
                             child: ElevatedButton(
-                              onPressed: () => Navigator.of(context).push(
+                              onPressed: () => Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(builder: (context) => MoviePage(movies[index])),                          
                               ),
                               style: ElevatedButton.styleFrom(
