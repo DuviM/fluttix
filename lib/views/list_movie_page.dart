@@ -31,7 +31,7 @@ class _ListMoviePageState extends State<ListMoviePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FULMS'),
+        title: const Text('FLUMS'),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),

@@ -70,17 +70,20 @@ class MoviePage extends StatelessWidget {
                                           fontWeight: FontWeight.w200
                                         ),
                                       ),
-                                      // Text(
-                                      //   movie['genre'],
-                                      //   style: const TextStyle(
-                                      //     color: Colors.white,
-                                      //   ),                                        
-                                      // )
+                                      Text(
+                                        movie['genre']['name'],
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),                                        
+                                      )
                                     ],
                                   ),
                                   Text(
                                     '"${movie['tagline']}"',
-                                    style: const TextStyle(color: Colors.white),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontStyle: FontStyle.italic
+                                    ),
                                   ),                            
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +97,7 @@ class MoviePage extends StatelessWidget {
                                         color: Colors.yellow,
                                         ),
                                       ),                                    
-                                      const SizedBox(width: 10,),
+                                      const SizedBox(width: 30,),
                                       Text(                          
                                         movie['vote_average'].toStringAsFixed(1) + '/10',
                                         style: const TextStyle(color: Colors.white),
@@ -106,7 +109,24 @@ class MoviePage extends StatelessWidget {
                                       backgroundColor: Colors.red,
                                     ),
                                     onPressed: () {
-                                      
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Container(
+                                            height: 200,
+                                            color: Colors.black,
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(movie['youtube'])
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                      );
                                     },
                                     child: Text(
                                       'Watch trailer',
@@ -125,10 +145,11 @@ class MoviePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Sypnosis',
+                            'Sypnosis :',
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -136,70 +157,71 @@ class MoviePage extends StatelessWidget {
                       Text(
                         movie['overview'],
                         style: const TextStyle(color: Colors.white),
-                      ),
-                      
-              //         GridView.builder(
-              //           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-              //           itemCount: movie['actorsId'].length,
-              //           itemBuilder: (context, index) {
-              //             dynamic actor = movie['actorId'][index];
-
-              //             return Card(
-              //   elevation: 0,
-              //   color: Colors.transparent,
-              //   child: Column(
-              //     children: [
-              //       ClipRRect(
-              //         borderRadius: BorderRadius.circular(10),
-              //         child: actor['profile_path'] == null ?
-              //         Image.asset(
-              //           'images/nopic.jpg',
-              //           width: 175, height: 300,
-              //           fit: BoxFit.cover,
-              //         ):
-              //         Image.network(
-              //           actor['profile_path'],
-              //           width: 175, height: 300,
-              //           fit: BoxFit.cover,
-              //         ),
-              //       ),
-              //       Container(
-              //         margin: EdgeInsets.only(top: 10),
-              //         padding: EdgeInsets.symmetric(vertical: 10),
-              //         child: Text(
-              //           actor['name'],
-              //           textAlign: TextAlign.center,
-              //           style: TextStyle(
-              //             color: Colors.white,
-              //           ),
-              //         ),
-              //       ),
-              //       Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: [
-              //           actor['birthday'] == null ?
-              //           Text(
-              //             'N/C',
-              //             textAlign: TextAlign.center,
-              //             style: TextStyle(
-              //               color: Colors.white,
-              //             ),
-              //           ):
-              //           Text(
-              //             actor['birthday'],
-              //             textAlign: TextAlign.center,
-              //             style: TextStyle(
-              //               color: Colors.white,
-              //             ),
-              //           ),
-              //         ],
-              //       )
-              //     ],
-              //   ),
-              // );
-              //           }
-              //         )
+                      ),                      
+                      GridView.builder(                            shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisExtent: 200,
+                        ),
+                        itemCount: movie['actorsId'].length,
+                        itemBuilder: (context, index) {
+                          dynamic actor = movie['actors'][index];
+                          return Card(
+                            elevation: 0,
+                            color: Colors.transparent,
+                            child: Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(4),
+                                  child: actor['profile_path'] == null ?
+                                  Image.asset(
+                                    'images/nopic.jpg',
+                                    width: 75, height: 100,
+                                    fit: BoxFit.cover,
+                                  ):
+                                  Image.network(
+                                    actor['profile_path'],
+                                    width: 75, height: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(vertical: 10),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        actor['name'],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        'as',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w100
+                                        ),
+                                      ),
+                                      Text(
+                                        actor['character'],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      )
                     ],
                   ),
                 )
